@@ -1,0 +1,72 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: whitesmoke;
+    font-family: poppins, sans-serif;
+    overflow: hidden;
+}
+
+@font-face {
+    font-family: poppins;
+    src:url(../fonts/poppins.ttf); 
+}
+
+.menu {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5); 
+    border: 1px solid black;
+    height: 100vh;
+}
+
+.menu h1 {
+    font-size: 7rem;
+    font-weight: bolder;
+    color: #26437a;
+    letter-spacing: 0.5rem;
+    -webkit-text-stroke: 0.01rem rgb(48, 93, 153);
+    text-shadow: 2px 2px 5px rgb(55, 119, 172);
+}
+
+.options {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+}
+
+.options .button {
+    margin-top: 1rem;
+    padding: 1rem;
+    font-size: 1.5rem;
+    width: 100%;
+    background-color: #26437a; 
+    color: white;
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
+}
+
+.options .button:hover {
+    background-color: #345a7e;
+}
+
+.game-window, .tutorial {
+    display: none; 
+}
+
+.player {
+    position: absolute;
+    width: 8rem;
+    height: 10rem;
+    background-color: #f00; 
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
