@@ -56,7 +56,17 @@ body {
 }
 
 .game-window, .tutorial {
-    display: none; 
+    display: none;
+}
+
+#backgroundImage {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    width: 90rem;
+    border: 1px solid black;
+    transform: translate(-50%, -50%);
+    background-size: cover;
 }
 
 .player {
@@ -66,7 +76,7 @@ body {
     top: 85%;
     left: 50%;
     border: 1px solid black;
-    filter: drop-shadow(2px 2px 1px red)drop-shadow(-2px -2px 1px red);
+    filter: drop-shadow(1px 1px 10px rgb(232, 150, 150));
     transform: translate(-50%, -50%);
     background-image: url('../sources/graphics/car (1).png');
     background-size: cover;

@@ -2,7 +2,7 @@ class Player {
     constructor() {
         this.element = document.getElementById('player');
         this.positionX = 50;
-        this.velocity = 3;
+        this.velocity = 2;
         this.minPositionX = 5;
         this.maxPositionX = 95;
 
