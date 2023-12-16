@@ -2,15 +2,15 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: poppins;
+    src:url(../sources/fonts/poppins.ttf); 
+}
+
 body {
     background-color: whitesmoke;
     font-family: poppins, sans-serif;
     overflow: hidden;
-}
-
-@font-face {
-    font-family: poppins;
-    src:url(../fonts/poppins.ttf); 
 }
 
 .menu {
@@ -18,8 +18,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5); 
-    border: 1px solid black;
     height: 100vh;
 }
 
@@ -32,7 +30,7 @@ body {
     text-shadow: 2px 2px 5px rgb(55, 119, 172);
 }
 
-.options {
+.options, .tutorial {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -40,12 +38,12 @@ body {
     width: 30%;
 }
 
-.options .button {
+.button {
     margin-top: 1rem;
     padding: 1rem;
     font-size: 1.5rem;
-    width: 100%;
     background-color: #26437a; 
+    width: 100%;
     color: white;
     border: none; 
     border-radius: 5px; 
@@ -53,7 +51,7 @@ body {
     transition: background-color 0.3s ease; 
 }
 
-.options .button:hover {
+.button:hover {
     background-color: #345a7e;
 }
 
@@ -63,9 +61,13 @@ body {
 
 .player {
     position: absolute;
-    width: 8rem;
-    height: 10rem;
+    width: 15rem;
+    height: 15rem;
     top: 85%;
     left: 50%;
+    border: 1px solid black;
+    filter: drop-shadow(2px 2px 1px red)drop-shadow(-2px -2px 1px red);
     transform: translate(-50%, -50%);
+    background-image: url('../sources/graphics/car (1).png');
+    background-size: cover;
 }

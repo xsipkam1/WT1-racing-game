@@ -17,3 +17,8 @@ function showTutorial(){
     hideElement("menu")
     showElement("tutorial")
 }
+
+function showMenu() {
+    hideElement("tutorial")
+    showElement("menu")
+}

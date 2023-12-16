@@ -5,24 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <title>CAR CHASE</title>
+    <title>RAPID RACER</title>
 </head>
 <body>
 
     <section id="menu" class="menu">
-        <h1>RAPID RACER</h1>
+        <div class="d-flex justify-content-center align-items-center">
+            <h1>RAPID RACER</h1>
+        </div>
         <div class="options d-flex flex-column">
             <button onclick="startGame()" class="button">NEW GAME</button>
             <button onclick="showTutorial()" class="button">TUTORIAL</button>
         </div>
     </section>
 
-    <section id="gameWindow" class="game-window">
-        <img src="sources\graphics\car (1).png" class="player" id="player">
-    </section>
+    <main id="gameWindow" class="game-window">
+        <div class="player" id="player"></div>
+    </main>
 
     <section id="tutorial" class="tutorial">
-        <h1>ovlada sa W,S,A,D tupac shakur west side</h1>
+        <div class="d-flex justify-content-center align-items-center flex-column">
+            <h1>ovlada sa W,S,A,D</h1>
+            <h1>naklanaj na mobile</h1>
+            <button onclick="showMenu()" class="button">MENU</button>
+        </div>
     </section>
     
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
