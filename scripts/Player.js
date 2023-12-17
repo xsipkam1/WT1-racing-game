@@ -2,7 +2,7 @@ class Player {
     constructor() {
         this.car = document.getElementById('player');
         this.positionX = parseFloat(getComputedStyle(this.car).getPropertyValue("--x"))
-        this.velocity = 0.25;
+        this.velocity = 0.3;
         this.isMovingLeft = false
         this.isMovingRight = false
 
