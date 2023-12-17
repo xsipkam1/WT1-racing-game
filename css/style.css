@@ -64,17 +64,20 @@ body {
     top: 55%;
     left: 50%;
     width: 90rem;
+    height: 100vh;
     border: 1px solid black;
     transform: translate(-50%, -50%);
     background-size: cover;
 }
 
 .player {
+    --x: 50;
+    --y: 85;
     position: absolute;
     width: 7.6rem;
     height: 15rem;
-    top: 85%;
-    left: 50%;
+    top: calc(var(--y)*1vh);
+    left: calc(var(--x)*1vw);
     border: 1px solid black;
     filter: drop-shadow(1px 1px 10px rgb(232, 150, 150));
     transform: translate(-50%, -50%);
