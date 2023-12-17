@@ -9,33 +9,37 @@
     <title>RAPID RACER</title>
 </head>
 <body>
+    <img src="sources/graphics/menu.png" alt="menu" id="menuBackground" class="menu-background">
 
-    <section id="menu" class="menu">
-        <div class="d-flex justify-content-center align-items-center">
-            <h1>RAPID RACER</h1>
-        </div>
+    <div id="menu" class="menu">
         <div class="options d-flex flex-column">
-            <button onclick="startGame()" class="button">NEW GAME</button>
-            <button onclick="showTutorial()" class="button">TUTORIAL</button>
+            <button onclick="startGame()" class="button">NOVÁ HRA</button>
+            <button onclick="showTutorial()" class="button">TUTORIÁL</button>
         </div>
-    </section>
+    </div>
 
     <main id="gameWindow" class="game-window">
-        <img src="sources/graphics/road2.png" alt="road" id="road" class="road">
+        <canvas id="canvas" class="canvas">
+            <img src="sources/graphics/road2.png" alt="road" id="road" class="road">
+        </canvas>
         <div class="player" id="player"></div>
     </main>
 
-    <section id="tutorial" class="tutorial">
+    <div id="tutorial" class="tutorial">
         <div class="d-flex justify-content-center align-items-center flex-column">
-            <h1>ovlada sa W,S,A,D</h1>
-            <h1>naklanaj na mobile</h1>
+            <div class="controls d-flex justify-content-center align-items-center flex-column">
+                <ul>
+                    <li>ovlada sa W,S,A,D</li>
+                    <li>naklanaj na mobile</li>     
+                </ul>
+            </div>
             <button onclick="showMenu()" class="button">MENU</button>
         </div>
-    </section>
+    </div>
     
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="scripts/script.js"></script>
     <script src="scripts/Player.js"></script>
     <script src="scripts/Road.js"></script>
+    <script src="scripts/script.js"></script>
 </body>
 </html>

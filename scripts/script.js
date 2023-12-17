@@ -8,21 +8,9 @@ function showElement(id) {
     element.style.display = "block"
 }   
 
-function update() {
-    if(player.isMovingLeft) {
-        player.moveLeft()
-        console.log(player.isOnRoad(road.getBoundingBox()))
-    }
-    if(player.isMovingRight) { 
-        player.moveRight() 
-        console.log(player.isOnRoad(road.getBoundingBox()))
-    }
-    window.requestAnimationFrame(update)
-
-}
-
 function startGame() {
     hideElement("menu")
+    hideElement("menuBackground")
     showElement("gameWindow")
     window.requestAnimationFrame(update)
 }
@@ -37,4 +25,26 @@ function showMenu() {
     showElement("menu")
 }
 
+let roadY=0
+let roadY2=road2.canvas.height
+const speed = 5
+function update() {
 
+    road.clearRoad()
+
+    if(roadY > road.canvas.height) roadY=-road.canvas.height-speed+roadY2+10
+    else roadY+=speed
+    if(roadY2 > road2.canvas.height) roadY2=-road2.canvas.height-speed+roadY+10
+    else roadY2+=speed
+    
+    road.drawRoad(roadY)
+    road2.drawRoad(roadY2)
+    
+    if(player.isMovingLeft) {
+        player.moveLeft()
+    }
+    if(player.isMovingRight) { 
+        player.moveRight() 
+    }
+    window.requestAnimationFrame(update)
+}
