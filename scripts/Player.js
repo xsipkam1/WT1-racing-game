@@ -3,8 +3,6 @@ class Player {
         this.car = document.getElementById('player');
         this.positionX = parseFloat(getComputedStyle(this.car).getPropertyValue("--x"))
         this.velocity = 0.25;
-        this.minPositionX = 5;
-        this.maxPositionX = 95;
         this.isMovingLeft = false
         this.isMovingRight = false
 
@@ -24,14 +22,11 @@ class Player {
         };
     }
 
-    isOnRoad(roadBounds) {
+    isOnRoad(roadBounds, direction) {
         const playerCarBounds = player.getBoundingBox()
-        return (
-            playerCarBounds.left >= roadBounds.left &&
-            playerCarBounds.right <= roadBounds.right &&
-            playerCarBounds.top >= roadBounds.top &&
-            playerCarBounds.bottom <= roadBounds.bottom
-        );
+
+        if (direction == "left") return playerCarBounds.left >= roadBounds.left+5;
+        if (direction == "right") return playerCarBounds.right <= roadBounds.right-5;
     }
 
     collision(car) {    //vrati true ak sa player dotkol auta "car" ( priklad volania funkcie: collision(car.getBoundingBox()) - class Car este neexistuje ale)
@@ -61,17 +56,22 @@ class Player {
     }
 
     moveLeft() {
-        this.positionX = Math.max(this.minPositionX, this.positionX - this.velocity);
-        this.updatePosition(this.positionX);
+        var tempPositionX = this.positionX - this.velocity;
+        if (this.isOnRoad(road.getBoundingBox(), "left")) {
+            this.updatePosition(tempPositionX);
+        }
     }
 
     moveRight() {
-        this.positionX = Math.min(this.maxPositionX, this.positionX + this.velocity);
-        this.updatePosition(this.positionX);
+        var tempPositionX = this.positionX + this.velocity;
+        if (this.isOnRoad(road.getBoundingBox(), "right")) {
+            this.updatePosition(tempPositionX);
+        }
     }
 
     updatePosition(x) {
         this.car.style.setProperty("--x", x);
+        this.positionX = x;
     }
 }
 
