@@ -14,6 +14,36 @@ class Player {
         this.updatePosition(this.positionX);
     }
 
+    getBoundingBox() {
+        const rect = this.car.getBoundingClientRect();
+        return {
+            left: rect.left,
+            top: rect.top,
+            right: rect.right,
+            bottom: rect.bottom
+        };
+    }
+
+    isOnRoad(roadBounds) {
+        const playerCarBounds = player.getBoundingBox()
+        return (
+            playerCarBounds.left >= roadBounds.left &&
+            playerCarBounds.right <= roadBounds.right &&
+            playerCarBounds.top >= roadBounds.top &&
+            playerCarBounds.bottom <= roadBounds.bottom
+        );
+    }
+
+    collision(car) {    //vrati true ak sa player dotkol auta "car" ( priklad volania funkcie: collision(car.getBoundingBox()) - class Car este neexistuje ale)
+        const playerCarBounds = player.getBoundingBox()
+        return (
+            playerCarBounds.left < car.right &&
+            playerCarBounds.right > car.left &&
+            playerCarBounds.top < car.bottom &&
+            playerCarBounds.bottom > car.top
+        );
+    }
+
     handleKeyPress(event) {
         if (event.code === 'KeyA' || event.code === 'ArrowLeft') {
             this.isMovingLeft = true

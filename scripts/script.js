@@ -9,8 +9,14 @@ function showElement(id) {
 }   
 
 function update() {
-    if(player.isMovingLeft) player.moveLeft()
-    if(player.isMovingRight) player.moveRight()
+    if(player.isMovingLeft) {
+        player.moveLeft()
+        console.log(player.isOnRoad(road.getBoundingBox()))
+    }
+    if(player.isMovingRight) { 
+        player.moveRight() 
+        console.log(player.isOnRoad(road.getBoundingBox()))
+    }
     window.requestAnimationFrame(update)
 
 }
