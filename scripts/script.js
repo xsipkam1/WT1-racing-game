@@ -8,11 +8,13 @@ function showElement(id) {
     element.style.display = "block"
 }   
 
+let car                                                                     //ADDED
 function startGame() {
     hideElement("menu")
     hideElement("menuBackground")
     showElement("gameWindow")
     window.requestAnimationFrame(update)
+    car = new Car();                                                        //BOHUZIAL OBJEKT SA MUSI VYTVORIT TU INAK TO NEFUNGUJE
 }
 
 function showTutorial(){
@@ -29,6 +31,10 @@ function update() {
     road.update(road2.y)
     road2.update(road.y)
     player.update()
+
+    car.update()
+    if(player.collision(car.getBoundingBox())) console.log("KOLIZIA")
+    
     window.requestAnimationFrame(update)
 }
 

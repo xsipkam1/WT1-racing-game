@@ -36,14 +36,14 @@ class Player {
     }
 
     isOnRoad(roadBounds, direction) {
-        const playerCarBounds = player.getBoundingBox()
+        const playerCarBounds = this.getBoundingBox()
 
         if (direction == "left") return playerCarBounds.left >= roadBounds.left+5;
         if (direction == "right") return playerCarBounds.right <= roadBounds.right-5;
     }
 
     collision(car) {    //vrati true ak sa player dotkol auta "car" ( priklad volania funkcie: collision(car.getBoundingBox()) - class Car este neexistuje ale)
-        const playerCarBounds = player.getBoundingBox()
+        const playerCarBounds = this.getBoundingBox()
         return (
             playerCarBounds.left < car.right &&
             playerCarBounds.right > car.left &&

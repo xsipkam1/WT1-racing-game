@@ -86,15 +86,27 @@ body {
     background-size: cover;
 }
 
-.player {
-    --x: 57;
-    --y: 85;
+.player, .car {
     position: absolute;
     width: 6.5%;
     height: auto;
+    border: 1px solid black;
+    filter: drop-shadow(1px 1px 10px);
+    transform: translate(-50%, -50%);
+}
+
+.player {
+    --x: 57;
+    --y: 85;
     top: calc(var(--y)*1vh);
     left: calc(var(--x)*1vw);
-    border: 1px solid black;
     filter: drop-shadow(1px 1px 10px rgb(17, 117, 233));
-    transform: translate(-50%, -50%);
+}
+
+.car {
+    --x: 57;
+    --y: -20;
+    top: calc(var(--y)*1vh);
+    left: calc(var(--x)*1vw);
+    filter: drop-shadow(1px 1px 10px rgb(233, 17, 17));
 }
