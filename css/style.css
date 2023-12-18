@@ -88,15 +88,13 @@ body {
 
 .player {
     --x: 57;
-    --y: 87;
+    --y: 85;
     position: absolute;
-    width: 6%;
-    height: 24%;
+    width: 6.5%;
+    height: auto;
     top: calc(var(--y)*1vh);
     left: calc(var(--x)*1vw);
     border: 1px solid black;
     filter: drop-shadow(1px 1px 10px rgb(17, 117, 233));
     transform: translate(-50%, -50%);
-    background-image: url('../sources/graphics/car (1).png');
-    background-size: cover;
 }
