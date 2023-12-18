@@ -39,19 +39,19 @@ document.addEventListener("keydown", function(event) {
 });
 
 document.addEventListener("keyup", function(event) {
+    if (event.code === 'KeyW' || event.code === 'ArrowUp' || event.code === 'ArrowDown' || event.code === 'KeyS') {
         speed = 8;
+    }
 });
 
 function update() {
 
     if(roadY > road.canvas.height) {
         roadY=-road.canvas.height-speed+roadY2;
-        road.clearRoad();
     }
     else roadY+=speed
     if(roadY2 > road2.canvas.height) {
         roadY2=-road2.canvas.height-speed+roadY;
-        road2.clearRoad();
     }
     else roadY2+=speed
     
