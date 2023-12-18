@@ -1,18 +1,33 @@
+const INITIAL_SPEED = 7
+const LOWEST_SPEED = 4
+const HIGHEST_SPEED = 10
+
 class Road {
-    constructor() {
+    constructor(y) {
+        this.y=y
         this.canvas = document.getElementById("canvas")
         this.ctx = this.canvas.getContext('2d')
         this.image = new Image()
-        this.image.src = "sources/graphics/road1.png"
+        this.image.src = "sources/graphics/road2.png"
 
         this.image.onload = () => {
             this.canvas.width = this.image.width
             this.canvas.height = this.image.height
         };
+
     }
 
-    drawRoad(y) {
-        this.ctx.drawImage(this.image, 0, y)
+    update(y2) {
+        if(this.y > this.canvas.height){
+            this.y = -this.canvas.height - currentRoadSpeed + y2
+        } else {
+            this.y += currentRoadSpeed
+        }
+        this.drawRoad()
+    }
+
+    drawRoad() {
+        this.ctx.drawImage(this.image, 0, this.y)
     }
 
     getBoundingBox() {
@@ -24,7 +39,9 @@ class Road {
             bottom: rect.bottom
         };
     }
+
 }
 
-const road = new Road()
-const road2 = new Road()
+const road = new Road(0)
+const road2 = new Road(road.image.height)
+let currentRoadSpeed = INITIAL_SPEED

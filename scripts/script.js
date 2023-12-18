@@ -25,45 +25,30 @@ function showMenu() {
     showElement("menu")
 }
 
-let roadY=0
-let roadY2=1666
-let speed = 8
-
-document.addEventListener("keydown", function(event) {
-    console.log(event.code)
-    if (event.code === 'KeyW' || event.code === 'ArrowUp') {
-        speed = 10;
-    } else if (event.code === 'KeyS' || event.code === 'ArrowDown') {
-        speed = 5;
-    }
-});
-
-document.addEventListener("keyup", function(event) {
-    if (event.code === 'KeyW' || event.code === 'ArrowUp' || event.code === 'ArrowDown' || event.code === 'KeyS') {
-        speed = 8;
-    }
-});
-
 function update() {
-
-    if(roadY > road.canvas.height) {
-        roadY=-road.canvas.height-speed+roadY2;
-    }
-    else roadY+=speed
-    if(roadY2 > road2.canvas.height) {
-        roadY2=-road2.canvas.height-speed+roadY;
-    }
-    else roadY2+=speed
-    
-    
-    road.drawRoad(roadY)
-    road2.drawRoad(roadY2)
-    
-    if(player.isMovingLeft) {
-        player.moveLeft()
-    }
-    if(player.isMovingRight) {
-        player.moveRight()
-    }
+    road.update(road2.y)
+    road2.update(road.y)
+    player.update()
     window.requestAnimationFrame(update)
+}
+
+
+document.addEventListener('keydown', this.handleKeyPress.bind(this));
+document.addEventListener('keyup', this.handleKeyUp.bind(this));
+
+function handleKeyPress(event) {
+    if (event.code === 'KeyW' || event.code === 'ArrowUp') {
+        currentRoadSpeed = HIGHEST_SPEED;
+        player.velocity = FAST_VELOCITY
+    } else if (event.code === 'KeyS' || event.code === 'ArrowDown') {
+        currentRoadSpeed = LOWEST_SPEED;
+        player.velocity = SLOW_VELOCITY
+    }
+}
+
+function handleKeyUp(event) {
+    if (event.code === 'KeyW' || event.code === 'ArrowUp' || event.code === 'KeyS' || event.code === 'ArrowDown') {
+        currentRoadSpeed = INITIAL_SPEED;
+        player.velocity = INITIAL_VELOCITY
+    } 
 }

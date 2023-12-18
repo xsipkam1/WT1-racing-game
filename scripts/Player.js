@@ -1,8 +1,12 @@
+const INITIAL_VELOCITY = 0.25
+const SLOW_VELOCITY = 0.1
+const FAST_VELOCITY = 0.35
+
 class Player {
     constructor() {
         this.car = document.getElementById('player');
         this.positionX = parseFloat(getComputedStyle(this.car).getPropertyValue("--x"))
-        this.velocity = 0.3;
+        this.velocity = INITIAL_VELOCITY;
         this.isMovingLeft = false
         this.isMovingRight = false
 
@@ -20,6 +24,15 @@ class Player {
             right: rect.right,
             bottom: rect.bottom
         };
+    }
+
+    update() {
+        if(this.isMovingLeft) {
+            this.moveLeft()
+        }
+        if(this.isMovingRight) { 
+            this.moveRight() 
+        }
     }
 
     isOnRoad(roadBounds, direction) {
