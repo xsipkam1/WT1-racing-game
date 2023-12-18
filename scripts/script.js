@@ -6,15 +6,65 @@ function hideElement(id){
 function showElement(id) {
     let element = document.getElementById(id)
     element.style.display = "block"
-}   
+}
 
-let car                                                                     //ADDED
+async function getJson() {
+    const response = await fetch("./data/levels.json")
+    if(response.ok) {
+        const levels = await response.json()
+        if (levels) {
+            const levelKeys = Object.keys(levels)
+            const randomLevelKey = levelKeys[Math.floor(Math.random() * levelKeys.length)]
+            const randomLevelData = levels[randomLevelKey]
+            return randomLevelData
+        }
+    }
+}
+
+ 
+let cars = []   
+let carsData = []    
+function startCountdown(time) {
+    const countdownInterval = setInterval(() => {
+        console.log(`Current time on countdown: ${time} seconds`);
+
+        carsData.forEach((car) => {
+        if (time === car.spawn) {
+            console.log(`Alert: Time matches car.spawn value for ${car.img}`);
+            cars.push(new Car(car.img, car.track))
+            console.log(cars)
+        }
+        });
+
+        if (time === 0) {
+            clearInterval(countdownInterval);
+            console.log('Countdown reached 0 seconds. Time\'s up!');
+        }
+
+        time--;
+    }, 1000);
+}
+                                      
 function startGame() {
+
+    getJson().then((levelData) => {
+        
+        const cars = levelData[0].cars
+        for (const carKey in cars) {
+            const carInfo = cars[carKey];
+            carsData.push(carInfo);
+        }
+        startCountdown(levelData[0].time)
+
+    })
+    .catch((error) => {
+        console.error('Error fetching or processing level data:', error)
+    });
+
     hideElement("menu")
     hideElement("menuBackground")
     showElement("gameWindow")
-    window.requestAnimationFrame(update)
-    car = new Car();                                                        //BOHUZIAL OBJEKT SA MUSI VYTVORIT TU INAK TO NEFUNGUJE
+    window.requestAnimationFrame(update)                                               
 }
 
 function showTutorial(){
@@ -32,8 +82,12 @@ function update() {
     road2.update(road.y)
     player.update()
 
-    car.update()
-    if(player.collision(car.getBoundingBox())) console.log("KOLIZIA")
+    cars.forEach((car) => {
+        car.update()
+        if (player.collision(car.getBoundingBox())) {
+            console.log("KOLIZIA S AUTOM NA TRATI CISLO ", car.track);
+        }
+    });
     
     window.requestAnimationFrame(update)
 }
