@@ -22,7 +22,7 @@ class Car {
         return numbers[track-1];
     }
 
-    remove() {
+    removeCar() {
         this.car.parentNode.removeChild(this.car)
         cars.splice(0, 1)
     }
@@ -40,7 +40,7 @@ class Car {
     update() {
         this.positionY+=INITIAL_VELOCITY
         if(this.positionY > 120) {
-            this.remove()
+            this.removeCar()
             dodgedCars++
         }
         this.updatePosition()

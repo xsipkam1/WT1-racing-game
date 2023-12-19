@@ -38,7 +38,12 @@ function lose() {
 }
 
 function deleteCars() {
-    cars.forEach((car)=>car.remove())
+    cars.forEach((car)=>car.removeCar())
+    const gameWindow = document.getElementById('gameWindow');
+    const carElements = gameWindow.querySelectorAll('.car');
+    carElements.forEach(carElement => {
+        carElement.remove();
+    });
     cars=[]
 }
 
