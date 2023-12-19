@@ -26,15 +26,21 @@ function updateStats(time) {
 }
 
 function win() {
-    clearInterval(countdownInterval)
-    animationRunning = false
-    showDialog("winDialog")
+    gameEnded()
 }
 
 function lose() {
+    gameEnded()
+}
+
+function gameEnded() {
     clearInterval(countdownInterval)
     animationRunning = false
     showDialog("loseDialog")
+    stopPlayingSound(audio);
+    stopPlayingSound(audio2);
+    stopPlayingSound(audio3);
+
 }
 
 function deleteCars() {
@@ -44,7 +50,13 @@ function deleteCars() {
     carElements.forEach(carElement => {
         carElement.remove();
     });
-    cars=[]
+    //cars = [] //neviem ci to tam musi byt asi to ide aj bez toho ale ked to tu neni tak W a S funguje
+}
+
+function changeCarsVelocity(velocity) {
+    cars.forEach((car) => {
+        car.velocity = velocity
+    });
 }
 
 function clearPreviousGame() {
@@ -105,6 +117,7 @@ function loadLevelData() {
     .catch((error) => {
         console.error('Error fetching or processing level data:', error)
     });
+
 }
 
 let cars = []
@@ -124,10 +137,12 @@ function startCountdown(time) {
         if (dodgedCars === carsData.length) {
             win()
         }
+        console.log(cars)
+        console.log(carsData)
         carsData.forEach((car) => {
             if (time === car.spawn) {
                 console.log(`Alert: Time matches car.spawn value for ${car.img}`)
-                cars.push(new Car(car.img, car.track))
+                cars.push(new Car(car.img, car.track, player.velocity))
                 console.log(cars)
             }
         });
@@ -158,7 +173,26 @@ function update() {
     }
 }
 
+const audio = document.getElementById('audioAccelerate');
+const audio2 = document.getElementById('audioDecelerate');
+const audio3 = document.getElementById('audioBreaking');
 
+function stopPlayingSound (audio) {
+    let volume = 1.0;
+
+    const fadeOutInterval = setInterval(() => {
+        if (volume > 0.01) {
+            volume -= 0.01;
+            audio.volume = volume;
+            
+        } else {
+            audio.pause();
+            audio.currentTime = 0;
+            clearInterval(fadeOutInterval);
+            audio.volume = 1.0;
+        }
+    }, 5);
+}
 
 document.addEventListener('keydown', this.handleKeyPress.bind(this))
 document.addEventListener('keyup', this.handleKeyUp.bind(this))
@@ -167,9 +201,13 @@ function handleKeyPress(event) {
     if (event.code === 'KeyW' || event.code === 'ArrowUp') {
         currentRoadSpeed = HIGHEST_SPEED
         player.velocity = FAST_VELOCITY
+        changeCarsVelocity(FAST_VELOCITY)
+        if (animationRunning) audio.play();
     } else if (event.code === 'KeyS' || event.code === 'ArrowDown') {
         currentRoadSpeed = LOWEST_SPEED
         player.velocity = SLOW_VELOCITY
+        changeCarsVelocity(SLOW_VELOCITY)
+        if (animationRunning) audio3.play();
     }
 }
 
@@ -177,5 +215,14 @@ function handleKeyUp(event) {
     if (event.code === 'KeyW' || event.code === 'ArrowUp' || event.code === 'KeyS' || event.code === 'ArrowDown') {
         currentRoadSpeed = INITIAL_SPEED
         player.velocity = INITIAL_VELOCITY
+        changeCarsVelocity(INITIAL_VELOCITY)
+
+        if (animationRunning) {
+            if (event.code === 'KeyW' || event.code === 'ArrowUp') {
+                audio2.play();
+                stopPlayingSound(audio);
+            }
+            if (event.code === 'KeyS' || event.code === 'ArrowDown') stopPlayingSound(audio3);
+        }
     } 
 }

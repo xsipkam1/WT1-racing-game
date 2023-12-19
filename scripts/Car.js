@@ -1,5 +1,5 @@
 class Car {
-    constructor(img, track) {
+    constructor(img, track, velocity) {
         this.car = document.createElement("img")
         this.car.src = img
         this.car.alt = "car"
@@ -9,7 +9,7 @@ class Car {
         this.positionX = this.getRandomXPoisition(this.track)
         this.car.style.setProperty("--x", this.positionX)
         this.positionY = parseFloat(getComputedStyle(this.car).getPropertyValue("--y"))
-        this.velocity = INITIAL_VELOCITY;
+        this.velocity = velocity;
         this.updatePosition();
     }
 
@@ -17,8 +17,8 @@ class Car {
         //const roadBounds = road.getBoundingBox()
 
         //tieto cisla reprezentuju pruhy 1 az 6
-        const numbers = [21, 33, 45, 57, 68, 80];                           //TODO - dynamicky ziskat tieto cisla na zaklade rozlisenia obrazku cesty
-                                                                            //aby to fungovalo na vsetkych zariadeniach
+        const numbers = [21, 33, 45, 57, 68, 80]; //TODO - dynamicky ziskat tieto cisla na zaklade rozlisenia obrazku cesty
+                                                    //aby to fungovalo na vsetkych zariadeniach
         return numbers[track-1];
     }
 
@@ -38,7 +38,7 @@ class Car {
     }
 
     update() {
-        this.positionY+=INITIAL_VELOCITY
+        this.positionY+=this.velocity
         if(this.positionY > 120) {
             this.removeCar()
             dodgedCars++
