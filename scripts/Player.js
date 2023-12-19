@@ -42,7 +42,7 @@ class Player {
         if (direction == "right") return playerCarBounds.right <= roadBounds.right-5;
     }
 
-    collision(car) {    
+    collision(car) {
         const playerCarBounds = this.getBoundingBox()
         return (
             playerCarBounds.left < car.right &&

@@ -8,6 +8,12 @@ function showElement(id) {
     element.style.display = "block"
 }
 
+function showDialog(id) {
+    let element = document.getElementById(id)
+    element.style.zIndex = '1';
+    element.showModal();
+}
+
 async function getJson() {
     const response = await fetch("./data/levels.json")
     if(response.ok) {
@@ -21,9 +27,11 @@ async function getJson() {
     }
 }
 
- 
-let cars = []   
-let carsData = []    
+let cars = []
+let carsData = []
+let animationRunning = false;
+const myDialog = document.getElementById('myDialog');
+
 function startCountdown(time) {
     const countdownInterval = setInterval(() => {
         console.log(`Current time on countdown: ${time} seconds`);
@@ -39,14 +47,14 @@ function startCountdown(time) {
         if (time === 0) {
             clearInterval(countdownInterval);
             console.log('Countdown reached 0 seconds. Time\'s up!');
+            animationRunning = false;
         }
 
         time--;
     }, 1000);
 }
-                                      
 function startGame() {
-
+    animationRunning = true;
     getJson().then((levelData) => {
         
         const cars = levelData[0].cars
@@ -64,7 +72,7 @@ function startGame() {
     hideElement("menu")
     hideElement("menuBackground")
     showElement("gameWindow")
-    window.requestAnimationFrame(update)                                               
+    window.requestAnimationFrame(update)
 }
 
 function showTutorial(){
@@ -74,6 +82,8 @@ function showTutorial(){
 
 function showMenu() {
     hideElement("tutorial")
+    hideElement("gameWindow")
+    showElement("menuBackground")
     showElement("menu")
 }
 
@@ -86,12 +96,14 @@ function update() {
         car.update()
         if (player.collision(car.getBoundingBox())) {
             console.log("KOLIZIA S AUTOM NA TRATI CISLO ", car.track);
+            animationRunning = false;
+            showDialog("loseDialog");
         }
     });
-    
-    window.requestAnimationFrame(update)
+    if (animationRunning) {
+        window.requestAnimationFrame(update);
+    }
 }
-
 
 document.addEventListener('keydown', this.handleKeyPress.bind(this));
 document.addEventListener('keyup', this.handleKeyUp.bind(this));

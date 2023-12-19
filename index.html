@@ -19,10 +19,19 @@
     </div>
 
     <main id="gameWindow" class="game-window">
+        <dialog id="loseDialog">
+            <p> Game over chlapce </p>
+            <button onclick="showMenu()" class="button">MENU</button>
+        </dialog>
+        <dialog id="winDialog">
+            <p> Vyhral si </p>
+            <button onclick="showMenu()" class="button">MENU</button>
+        </dialog>
         <canvas id="canvas" class="canvas">
             <img src="sources/graphics/road2.png" alt="road" id="road" class="road">
         </canvas>
         <img src="sources/graphics/car (1).png" alt="player" class="player" id="player">
+        
     </main>
 
     <div id="tutorial" class="tutorial">
