@@ -22,6 +22,11 @@ class Car {
         return numbers[track-1];
     }
 
+    remove() {
+        this.car.parentNode.removeChild(this.car)
+        cars.splice(0, 1)
+    }
+
     getBoundingBox() {
         const rect = this.car.getBoundingClientRect();
         return {
@@ -34,6 +39,10 @@ class Car {
 
     update() {
         this.positionY+=INITIAL_VELOCITY
+        if(this.positionY > 120) {
+            this.remove()
+            dodgedCars++
+        }
         this.updatePosition()
     }
 
