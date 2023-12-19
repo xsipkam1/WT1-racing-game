@@ -31,15 +31,25 @@ let cars = []
 let carsData = []
 let dodgedCars = 0
 let animationRunning = false;
-const loseDialog = document.getElementById('myDialog');
+const loseDialog = document.getElementById('loseDialog');
+const winDialog = document.getElementById('winDialog');
+
+let countdownInterval;
 
 function startCountdown(time) {
     const timeLeftElement = document.getElementById('timeLeft')
     const carsLeftElement = document.getElementById('carsLeft')
-    const countdownInterval = setInterval(() => {
+    
+    countdownInterval = setInterval(() => {
         console.log(`Current time on countdown: ${time} seconds`)
         timeLeftElement.textContent = `TIME: ${time} sec`
         carsLeftElement.textContent = `CARS LEFT: ${dodgedCars}/${carsData.length}`
+
+        if (dodgedCars === carsData.length) {
+            clearInterval(countdownInterval);
+            animationRunning = false;
+            showDialog("winDialog")
+        }
 
         carsData.forEach((car) => {
         if (time === car.spawn) {
@@ -53,6 +63,7 @@ function startCountdown(time) {
             clearInterval(countdownInterval);
             console.log('Countdown reached 0 seconds. Time\'s up!');
             animationRunning = false;
+            showDialog("loseDialog")
         }
 
         time--
@@ -103,6 +114,7 @@ function update() {
             console.log("KOLIZIA S AUTOM NA TRATI CISLO ", car.track);
             animationRunning = false;
             showDialog("loseDialog");
+            clearInterval(countdownInterval);
         }
     });
     if (animationRunning) {
