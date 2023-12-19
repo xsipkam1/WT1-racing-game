@@ -82,6 +82,11 @@ class Player {
         }
     }
 
+    restartPosition() {
+        this.car.style.setProperty("--x", 57);
+        this.positionX = 57;
+    }
+
     updatePosition(x) {
         this.car.style.setProperty("--x", x);
         this.positionX = x;

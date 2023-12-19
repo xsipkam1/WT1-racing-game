@@ -126,8 +126,6 @@ body {
     filter: drop-shadow(1px 1px 10px rgb(233, 17, 17));
 }
 
-dialog
-
 #loseDialog {
     box-shadow: 9px 4px 47px rgba(115, 4, 4, 0.568);
     background-color: #d2dfe7;
