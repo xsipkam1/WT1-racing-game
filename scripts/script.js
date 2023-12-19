@@ -24,24 +24,29 @@ async function getJson() {
  
 let cars = []   
 let carsData = []    
+let dodgedCars = 0
 function startCountdown(time) {
+    const timeLeftElement = document.getElementById('timeLeft')
+    const carsLeftElement = document.getElementById('carsLeft')
     const countdownInterval = setInterval(() => {
-        console.log(`Current time on countdown: ${time} seconds`);
+        console.log(`Current time on countdown: ${time} seconds`)
+        timeLeftElement.textContent = `TIME: ${time} sec`
+        carsLeftElement.textContent = `CARS LEFT: ${dodgedCars}/${carsData.length}`
 
         carsData.forEach((car) => {
         if (time === car.spawn) {
-            console.log(`Alert: Time matches car.spawn value for ${car.img}`);
+            console.log(`Alert: Time matches car.spawn value for ${car.img}`)
             cars.push(new Car(car.img, car.track))
             console.log(cars)
         }
         });
 
         if (time === 0) {
-            clearInterval(countdownInterval);
-            console.log('Countdown reached 0 seconds. Time\'s up!');
+            clearInterval(countdownInterval)
+            console.log('Countdown reached 0 seconds. Time\'s up!')
         }
 
-        time--;
+        time--
     }, 1000);
 }
                                       
@@ -51,8 +56,8 @@ function startGame() {
         
         const cars = levelData[0].cars
         for (const carKey in cars) {
-            const carInfo = cars[carKey];
-            carsData.push(carInfo);
+            const carInfo = cars[carKey]
+            carsData.push(carInfo)
         }
         startCountdown(levelData[0].time)
 
@@ -85,7 +90,7 @@ function update() {
     cars.forEach((car) => {
         car.update()
         if (player.collision(car.getBoundingBox())) {
-            console.log("KOLIZIA S AUTOM NA TRATI CISLO ", car.track);
+            console.log("KOLIZIA S AUTOM NA TRATI CISLO ", car.track)
         }
     });
     
@@ -93,22 +98,22 @@ function update() {
 }
 
 
-document.addEventListener('keydown', this.handleKeyPress.bind(this));
-document.addEventListener('keyup', this.handleKeyUp.bind(this));
+document.addEventListener('keydown', this.handleKeyPress.bind(this))
+document.addEventListener('keyup', this.handleKeyUp.bind(this))
 
 function handleKeyPress(event) {
     if (event.code === 'KeyW' || event.code === 'ArrowUp') {
-        currentRoadSpeed = HIGHEST_SPEED;
+        currentRoadSpeed = HIGHEST_SPEED
         player.velocity = FAST_VELOCITY
     } else if (event.code === 'KeyS' || event.code === 'ArrowDown') {
-        currentRoadSpeed = LOWEST_SPEED;
+        currentRoadSpeed = LOWEST_SPEED
         player.velocity = SLOW_VELOCITY
     }
 }
 
 function handleKeyUp(event) {
     if (event.code === 'KeyW' || event.code === 'ArrowUp' || event.code === 'KeyS' || event.code === 'ArrowDown') {
-        currentRoadSpeed = INITIAL_SPEED;
+        currentRoadSpeed = INITIAL_SPEED
         player.velocity = INITIAL_VELOCITY
     } 
 }
