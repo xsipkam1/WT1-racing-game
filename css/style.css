@@ -227,3 +227,22 @@ body {
     }
     
 }
+
+@media print {
+    body * {
+        display: none;
+    }
+
+    #tutorial, #controls * {
+        background-color: white;
+        color: black;
+        top: 40%;
+        width: 100%;
+        text-align: center;
+        display: block !important;
+    }
+
+    .tutorial .controls h2 {
+        text-shadow: none;
+    }
+}
