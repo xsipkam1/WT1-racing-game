@@ -56,19 +56,27 @@ function clearPreviousGame() {
 }
 
 function showTutorial(){
-    document.getElementById("menuBackground").classList.add("darkened");
+    document.getElementById("menuBackground").classList.add("darkened")
     hideElement("menu")
     showElement("tutorial")
 }
 
 function showMenu() {
-    document.getElementById("menuBackground").classList.remove("darkened");
+    document.getElementById("menuBackground").classList.remove("darkened")
+    menuTheme.play()
+    hideElement("settings")
     hideElement("tutorial")
     hideElement("gameWindow")
     hideDialog("loseDialog")
     hideDialog("winDialog")
     showElement("menuBackground")
     showElement("menu")
+}
+
+function showSettings() {
+    document.getElementById("menuBackground").classList.add("darkened")
+    hideElement("menu")
+    showElement("settings")
 }
 
 function updateCars() {
@@ -142,6 +150,8 @@ function startCountdown(time) {
 }
 
 function startGame() {
+    menuTheme.pause()
+    menuTheme.currentTime=0
     clearPreviousGame()
     loadLevelData()
     hideElement("menu")
@@ -181,3 +191,26 @@ function handleKeyUp(event) {
         player.velocity = INITIAL_VELOCITY
     } 
 }
+
+const hoverSound = document.getElementById('hoverSound')
+const clickSound = document.getElementById('clickSound')
+const menuTheme = document.getElementById('menuTheme')
+const soundButtons = document.querySelectorAll('.button')
+const volumeControl = document.getElementById('musicRange')
+volumeControl.addEventListener('input', function() {
+    menuTheme.volume = this.value;
+});
+
+menuTheme.volume=volumeControl.value
+document.addEventListener('DOMContentLoaded', function () {
+    menuTheme.play()
+    soundButtons.forEach(function (button) {
+        button.addEventListener('mouseenter', function () {
+            hoverSound.play()
+        });
+
+        button.addEventListener('click', function () {
+            clickSound.play()
+        });
+    });
+});

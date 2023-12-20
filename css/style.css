@@ -44,13 +44,13 @@ body {
 
 .options {
     position: absolute;
-    top: 61%;
+    top: 65%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 30%;
 }
 
-.tutorial {
+.tutorial, .settings {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -58,7 +58,7 @@ body {
     width: 50%;
 }
 
-.tutorial .controls {
+.controls {
     border: 1px solid black;
     background: transparent;
     border-radius: 10px;
@@ -70,16 +70,16 @@ body {
     padding: 20px;
 }
 
-.tutorial .controls h2 {
+.controls h2 {
     font-family: 'Franklin Gothic Medium';
     text-shadow: 5px 5px 5px black;
 }
 
-.tutorial .controls p, li {
+.controls p, li {
     font-size: 1.2rem;
 }
 
-.tutorial button {
+.tutorial button, .settings button {
     width: 38%;
 }
 
@@ -101,7 +101,7 @@ body {
     background-color: #126d6d;
 }
 
-.game-window, .tutorial {
+.game-window, .tutorial, .settings {
     display: none;
 }
 
@@ -183,6 +183,10 @@ body {
     z-index: -1;
 }
 
+.form-label {
+    font-size: 25px;  
+}
+
 @media (max-width: 540px) { 
     .canvas {
         width: 100%;
@@ -200,17 +204,20 @@ body {
     .options {
         width: 50%;
     }
-    .tutorial {
+    .tutorial, .settings {
         width: 80%;
     }
-    .tutorial button {
+    .tutorial button, .settings button {
         width: 50%;
     }
-    .tutorial .controls {
+    .controls {
         font-size: 15px;
     }
     .dialog {
         width: 50%;
+    }
+    .form-label {
+        font-size: 15px;  
     }
 }
 
@@ -218,11 +225,11 @@ body {
     .button {
         font-size: 0.6rem;
     }
-    .tutorial .controls h2 {
+    .controls h2 {
         font-size: 1rem;
     }
     
-    .tutorial .controls p, li {
+    .controls p, li {
         font-size: 0.9rem;
     }
     
@@ -231,6 +238,10 @@ body {
 @media print {
     body * {
         display: none;
+    }
+
+    #menuBackground{
+        opacity: 0;
     }
 
     #tutorial, #controls * {
@@ -242,7 +253,7 @@ body {
         display: block !important;
     }
 
-    .tutorial .controls h2 {
+    .controls h2 {
         text-shadow: none;
     }
 }
