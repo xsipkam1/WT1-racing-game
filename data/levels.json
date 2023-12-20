@@ -32,6 +32,11 @@
                 "img": "./sources/graphics/car (2).png",
                 "track": 6,
                 "spawn": 3
+            },
+            "car7": {
+                "img": "./sources/graphics/car (3).png",
+                "track": 1,
+                "spawn": 15
             }
         }
         

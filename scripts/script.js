@@ -21,13 +21,15 @@ function showDialog(id) {
 }
 
 function updateStats(time) {
-    timeLeftElement.textContent = `TIME: ${time.toFixed(1)} sec`
+    timeLeftElement.textContent = `TIME: ${time} sec`
     carsLeftElement.textContent = `CARS LEFT: ${dodgedCars}/${carsData.length}`
 }
 
+const winSound = document.getElementById('audioWin');
 function win() {
     gameEnded()
     showDialog("winDialog")
+    winSound.play()
 }
 
 function lose() {
@@ -39,6 +41,9 @@ function gameEnded() {
     clearInterval(countdownInterval)
     clearInterval(countdownInterval2)
     animationRunning = false
+    audio1Played.value = false
+    audio2Played.value = false
+    audio3Played.value = false
     stopPlayingSound(audio1, audio1Played);
     stopPlayingSound(audio2, audio2Played);
     stopPlayingSound(audio3, audio3Played);
@@ -96,6 +101,7 @@ function startPlayingSound(audio) {
 }
 
 const gameSong = document.getElementById('gameSong');
+const crashSound = document.getElementById('audioCrash');
 
 function showMenu() {
     hideElement("tutorial")
@@ -113,6 +119,7 @@ function updateCars() {
     cars.forEach((car) => {
         car.update()
         if (player.collision(car.getBoundingBox())) {
+            crashSound.play()
             console.log("KOLIZIA S AUTOM NA TRATI CISLO ", car.track)
             lose()
         }
