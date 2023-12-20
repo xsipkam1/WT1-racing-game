@@ -23,6 +23,13 @@
     </div>
 
     <main id="gameWindow" class="game-window">
+        <audio id="gameSong" src="sources/sounds/No Happy Endings2.mp3"></audio>
+        <audio id="audioAccelerate" src="sources/sounds/Car Acceleration Sound2.mp3"></audio>
+        <audio id="audioDecelerate" src="sources/sounds/deceleration.mp3"></audio>
+        <audio id="audioBreaking" src="sources/sounds/breaking.mp3"></audio>
+        <audio id="audioBasic" src="sources/sounds/basic moving car.mp3"></audio>
+        <audio id="audioWin" src="sources/sounds/win2.mp3"></audio>
+        <audio id="audioCrash" src="sources/sounds/car crash3.mp3"></audio>
         <dialog id="loseDialog" class="dialog text-center">
             <h2>GAME OVER</h2>
             <button onclick="showMenu()" class="button">MENU</button>
@@ -67,7 +74,7 @@
             <div class="controls">
                 <h2 class="text-center">NASTAVENIA</h2>
                 <label for="musicRange" class="form-label">HLASITOSŤ HUDBY</label>
-                <input type="range" class="form-range" min="0" max="1" step="0.1" id="musicRange" value="0.1">
+                <input type="range" class="form-range" min="0" max="1" step="0.01" id="musicRange" value="0.1">
             </div>
             <button onclick="showMenu()" class="button">MENU</button>
         </div>

@@ -1,7 +1,7 @@
 let playingOnMobile = window.matchMedia('(max-width: 540px)').matches
 
 class Car {
-    constructor(img, track) {
+    constructor(img, track, velocity) {
         this.car = document.createElement("img")
         this.car.src = img
         this.car.alt = "car"
@@ -11,7 +11,7 @@ class Car {
         this.positionX = this.getRandomXPoisition(this.track)
         this.car.style.setProperty("--x", this.positionX)
         this.positionY = parseFloat(getComputedStyle(this.car).getPropertyValue("--y"))
-        this.velocity = INITIAL_VELOCITY;
+        this.velocity = velocity;
         this.updatePosition();
 
         window.addEventListener('resize', () => this.handleWindowSizeChange())
@@ -49,7 +49,7 @@ class Car {
     }
 
     update() {
-        this.positionY+=INITIAL_VELOCITY
+        this.positionY+=this.velocity
         if(this.positionY > 120) {
             this.removeCar()
             dodgedCars++

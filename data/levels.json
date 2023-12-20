@@ -1,37 +1,52 @@
 {
     "level1": [
       {
-        "time": 20,
+        "time": 18,
         "cars": {
             "car1": {
                 "img": "./sources/graphics/car (2).png",
-                "track": 2,
-                "spawn": 5
+                "track": 1,
+                "spawn": 1
             },
             "car2": {
                 "img": "./sources/graphics/car (3).png",
                 "track": 4,
-                "spawn": 14
-            },
-            "car3": {
-                "img": "./sources/graphics/bus.png",
-                "track": 1,
-                "spawn": 9
+                "spawn": 2
             },
             "car4": {
                 "img": "./sources/graphics/car (4).png",
                 "track": 6,
-                "spawn": 19
+                "spawn": 5
             },
             "car5": {
                 "img": "./sources/graphics/car (5).png",
-                "track": 3,
-                "spawn": 11
+                "track": 2,
+                "spawn": 6
             },
             "car6": {
                 "img": "./sources/graphics/car (2).png",
-                "track": 6,
+                "track": 3,
+                "spawn": 7
+            },
+            "car8": {
+                "img": "./sources/graphics/car (4).png",
+                "track": 5,
                 "spawn": 10
+            },
+            "car9": {
+                "img": "./sources/graphics/bus.png",
+                "track": 1,
+                "spawn": 11
+            },
+            "car10": {
+                "img": "./sources/graphics/car (2).png",
+                "track": 4,
+                "spawn": 14
+            },
+            "car12": {
+                "img": "./sources/graphics/car (3).png",
+                "track": 2,
+                "spawn": 15
             }
         }
         
