@@ -56,11 +56,13 @@ function clearPreviousGame() {
 }
 
 function showTutorial(){
+    document.getElementById("menuBackground").classList.add("darkened");
     hideElement("menu")
     showElement("tutorial")
 }
 
 function showMenu() {
+    document.getElementById("menuBackground").classList.remove("darkened");
     hideElement("tutorial")
     hideElement("gameWindow")
     hideDialog("loseDialog")

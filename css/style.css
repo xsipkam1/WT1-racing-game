@@ -26,6 +26,11 @@ body {
     width: 100vw;
     height: 100vh;
     object-fit: cover;
+    transition: filter 1s ease;
+}
+
+.menu-background.darkened {
+    filter: brightness(45%); 
 }
 
 .menu h1 {
@@ -37,7 +42,7 @@ body {
     text-shadow: 2px 2px 5px rgb(55, 119, 172);
 }
 
-.options, .tutorial {
+.options {
     position: absolute;
     top: 61%;
     left: 50%;
@@ -45,12 +50,37 @@ body {
     width: 30%;
 }
 
+.tutorial {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+}
+
 .tutorial .controls {
     border: 1px solid black;
-    background-color: whitesmoke;
+    background: transparent;
+    border-radius: 10px;
+    backdrop-filter: blur(80px);
+    color: white;
     width: 100%;
     font-size: 30px;
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0.9); 
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.9); 
+    padding: 20px;
+}
+
+.tutorial .controls h2 {
+    font-family: 'Franklin Gothic Medium';
+    text-shadow: 5px 5px 5px black;
+}
+
+.tutorial .controls p, li {
+    font-size: 1.2rem;
+}
+
+.tutorial button {
+    width: 38%;
 }
 
 .button {
@@ -126,14 +156,67 @@ body {
     filter: drop-shadow(1px 1px 10px rgb(233, 17, 17));
 }
 
+.dialog {
+    background: rgba(236, 236, 236, 0.952);
+    border-radius: 10px;
+    width: 30%;
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.9); 
+    padding: 20px;
+}
+
+.dialog h2 {
+    font-size: 3rem;
+    color: black;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
 #loseDialog {
+    border: 1px solid rgb(255, 0, 0);
     box-shadow: 9px 4px 47px rgba(115, 4, 4, 0.568);
-    background-color: #d2dfe7;
     z-index: -1;
 }
 
 #winDialog {
+    border: 1px solid rgb(0, 255, 42);
     box-shadow: 9px 4px 47px rgba(37, 151, 8, 0.645);
-    background-color: #d2dfe7;
     z-index: -1;
+}
+
+@media (max-width: 540px) { 
+    .canvas {
+        width: 100%;
+    }
+    .player, .car {
+        width: 10%;
+        height: auto;
+    }
+    .stats h2, .dialog h2 {
+        font-size: 2rem;
+    }
+    .button {
+        font-size: 0.9rem;
+    }
+    .options {
+        width: 50%;
+    }
+    .tutorial {
+        width: 80%;
+    }
+    .tutorial button {
+        width: 50%;
+    }
+    .tutorial .controls {
+        font-size: 15px;
+    }
+    .dialog {
+        width: 50%;
+    }
+}
+
+@media (max-width: 280px) { 
+    .button {
+        font-size: 0.6rem;
+    }
+    
 }

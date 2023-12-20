@@ -1,3 +1,5 @@
+let playingOnMobile = window.matchMedia('(max-width: 540px)').matches
+
 class Car {
     constructor(img, track) {
         this.car = document.createElement("img")
@@ -11,15 +13,24 @@ class Car {
         this.positionY = parseFloat(getComputedStyle(this.car).getPropertyValue("--y"))
         this.velocity = INITIAL_VELOCITY;
         this.updatePosition();
+
+        window.addEventListener('resize', () => this.handleWindowSizeChange())
+    }
+
+    handleWindowSizeChange() {
+        playingOnMobile = window.matchMedia('(max-width: 540px)').matches
+        this.positionX = this.getRandomXPoisition(this.track)
+        this.car.style.setProperty("--x", this.positionX)
     }
 
     getRandomXPoisition(track) {
-        //const roadBounds = road.getBoundingBox()
-
-        //tieto cisla reprezentuju pruhy 1 az 6
-        const numbers = [21, 33, 45, 57, 68, 80];                           //TODO - dynamicky ziskat tieto cisla na zaklade rozlisenia obrazku cesty
-                                                                            //aby to fungovalo na vsetkych zariadeniach
-        return numbers[track-1];
+        let xPositions
+        if(!playingOnMobile) {
+            xPositions = [21, 33, 45, 57, 68, 80]  
+        } else {
+            xPositions = [9, 25, 42, 59, 75, 92]  
+        }
+        return xPositions[track-1]
     }
 
     removeCar() {
@@ -50,5 +61,3 @@ class Car {
         this.car.style.setProperty("--y", this.positionY);
     }
 }
-
-
