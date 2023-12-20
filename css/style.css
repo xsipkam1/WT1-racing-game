@@ -214,9 +214,16 @@ body {
     }
 }
 
-@media (max-width: 280px) { 
+@media (max-width: 307px) { 
     .button {
         font-size: 0.6rem;
+    }
+    .tutorial .controls h2 {
+        font-size: 1rem;
+    }
+    
+    .tutorial .controls p, li {
+        font-size: 0.9rem;
     }
     
 }
