@@ -21,25 +21,30 @@ function showDialog(id) {
 }
 
 function updateStats(time) {
-    timeLeftElement.textContent = `TIME: ${time} sec`
+    timeLeftElement.textContent = `TIME: ${time.toFixed(1)} sec`
     carsLeftElement.textContent = `CARS LEFT: ${dodgedCars}/${carsData.length}`
 }
 
 function win() {
     gameEnded()
+    showDialog("winDialog")
 }
 
 function lose() {
     gameEnded()
+    showDialog("loseDialog")
 }
 
 function gameEnded() {
     clearInterval(countdownInterval)
+    clearInterval(countdownInterval2)
     animationRunning = false
-    showDialog("loseDialog")
-    stopPlayingSound(audio);
-    stopPlayingSound(audio2);
-    stopPlayingSound(audio3);
+    stopPlayingSound(audio1, audio1Played);
+    stopPlayingSound(audio2, audio2Played);
+    stopPlayingSound(audio3, audio3Played);
+    audio.pause();
+    audio.currentTime = 0;
+
 
 }
 
@@ -50,7 +55,6 @@ function deleteCars() {
     carElements.forEach(carElement => {
         carElement.remove();
     });
-    //cars = [] //neviem ci to tam musi byt asi to ide aj bez toho ale ked to tu neni tak W a S funguje
 }
 
 function changeCarsVelocity(velocity) {
@@ -61,6 +65,7 @@ function changeCarsVelocity(velocity) {
 
 function clearPreviousGame() {
     deleteCars()
+    cars = []
     carsData = []
     dodgedCars = 0
     player.restartPosition()
@@ -71,6 +76,26 @@ function showTutorial(){
     hideElement("menu")
     showElement("tutorial")
 }
+const menuSong = document.getElementById('menuSong');
+startPlayingSound(menuSong)
+
+function startPlayingSound(audio) {
+    let volumee = 0.0;
+
+    const fadeInInterval = setInterval(() => {
+        if (volumee <= 0.99) {
+            volumee += 0.01;
+            audio.volume = volumee;
+            console.log(audio.volume)
+        } 
+            else {
+            audio.play()
+            clearInterval(fadeInInterval);
+        }
+    }, 5);
+}
+
+const gameSong = document.getElementById('gameSong');
 
 function showMenu() {
     hideElement("tutorial")
@@ -79,6 +104,9 @@ function showMenu() {
     hideDialog("winDialog")
     showElement("menuBackground")
     showElement("menu")
+    menuSong.play()
+    stopPlayingSound(gameSong)
+
 }
 
 function updateCars() {
@@ -113,6 +141,7 @@ function loadLevelData() {
         }
         updateStats(levelData[0].time)
         startCountdown(levelData[0].time-1)
+
     })
     .catch((error) => {
         console.error('Error fetching or processing level data:', error)
@@ -129,6 +158,7 @@ const winDialog = document.getElementById('winDialog')
 const timeLeftElement = document.getElementById('timeLeft')
 const carsLeftElement = document.getElementById('carsLeft')
 let countdownInterval
+let countdownInterval2
 
 function startCountdown(time) {
     countdownInterval = setInterval(() => {
@@ -139,13 +169,6 @@ function startCountdown(time) {
         }
         console.log(cars)
         console.log(carsData)
-        carsData.forEach((car) => {
-            if (time === car.spawn) {
-                console.log(`Alert: Time matches car.spawn value for ${car.img}`)
-                cars.push(new Car(car.img, car.track, player.velocity))
-                console.log(cars)
-            }
-        });
         if (time === 0) {
             console.log('Countdown reached 0 seconds. Time\'s up!')
             lose()
@@ -154,12 +177,50 @@ function startCountdown(time) {
     }, 1000);
 }
 
+function startCountdownSpawning() {
+    let time = 0;
+    let speed = 1000;
+
+    function spawnCars() {
+        carsData.forEach((car) => {
+            if (time === car.spawn) {
+                console.log(`Alert: Time matches car.spawn value for ${car.img}`);
+                cars.push(new Car(car.img, car.track, player.velocity));
+            }
+        });
+
+        console.log(speed);
+        clearInterval(countdownInterval2);
+
+        speed = 1000;
+        if (player.velocity === SLOW_VELOCITY) {
+            speed = 3500;
+        } else if (player.velocity === FAST_VELOCITY) {
+            speed = 500;
+        }
+
+        countdownInterval2 = setInterval(spawnCars, speed);
+        time++;
+    }
+
+    setTimeout(() => {
+        spawnCars();
+    }, speed);
+}
+
+
+const audio = document.getElementById('audioBasic');
+
 function startGame() {
     clearPreviousGame()
     loadLevelData()
+    startCountdownSpawning()
     hideElement("menu")
     hideElement("menuBackground")
     showElement("gameWindow")
+    audio.play()
+    startPlayingSound(gameSong)
+    stopPlayingSound(menuSong)
     window.requestAnimationFrame(update)
 }
 
@@ -173,41 +234,56 @@ function update() {
     }
 }
 
-const audio = document.getElementById('audioAccelerate');
+const audio1 = document.getElementById('audioAccelerate');
 const audio2 = document.getElementById('audioDecelerate');
 const audio3 = document.getElementById('audioBreaking');
 
-function stopPlayingSound (audio) {
+const audio1Played = { value: false };
+const audio2Played = { value: false };
+const audio3Played = { value: false };
+
+function playAudioOnce(audio, audioPlayed) {
+    if (!audioPlayed.value) {
+        audio.play();
+        audioPlayed.value = true;
+        console.log(audioPlayed.value);
+        console.log(audio3Played);
+    }
+}
+
+function stopPlayingSound(audio) {
     let volume = 1.0;
 
     const fadeOutInterval = setInterval(() => {
         if (volume > 0.01) {
             volume -= 0.01;
             audio.volume = volume;
-            
         } else {
             audio.pause();
             audio.currentTime = 0;
             clearInterval(fadeOutInterval);
             audio.volume = 1.0;
         }
-    }, 5);
+    }, 4);
 }
 
-document.addEventListener('keydown', this.handleKeyPress.bind(this))
-document.addEventListener('keyup', this.handleKeyUp.bind(this))
+document.addEventListener('keydown', handleKeyPress);
+document.addEventListener('keyup', handleKeyUp);
 
 function handleKeyPress(event) {
     if (event.code === 'KeyW' || event.code === 'ArrowUp') {
+        audio2Played.value = false
+        stopPlayingSound(audio2, audio2Played);
         currentRoadSpeed = HIGHEST_SPEED
         player.velocity = FAST_VELOCITY
         changeCarsVelocity(FAST_VELOCITY)
-        if (animationRunning) audio.play();
+        if (animationRunning) playAudioOnce(audio1, audio1Played)
     } else if (event.code === 'KeyS' || event.code === 'ArrowDown') {
+        stopPlayingSound(audio2, audio2Played); audio2Played.value = false
         currentRoadSpeed = LOWEST_SPEED
         player.velocity = SLOW_VELOCITY
         changeCarsVelocity(SLOW_VELOCITY)
-        if (animationRunning) audio3.play();
+        if (animationRunning) playAudioOnce(audio3, audio3Played);
     }
 }
 
@@ -219,10 +295,11 @@ function handleKeyUp(event) {
 
         if (animationRunning) {
             if (event.code === 'KeyW' || event.code === 'ArrowUp') {
-                audio2.play();
-                stopPlayingSound(audio);
+                playAudioOnce(audio2, audio2Played)
+                audio1Played.value = false
+                stopPlayingSound(audio1, audio1Played);
             }
-            if (event.code === 'KeyS' || event.code === 'ArrowDown') stopPlayingSound(audio3);
+            if (event.code === 'KeyS' || event.code === 'ArrowDown') stopPlayingSound(audio3, audio3Played); audio3Played.value = false
         }
-    } 
+    }
 }

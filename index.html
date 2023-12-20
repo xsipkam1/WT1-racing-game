@@ -12,16 +12,20 @@
     <img src="sources/graphics/menu.png" alt="menu" id="menuBackground" class="menu-background">
 
     <div id="menu" class="menu">
+        <audio id="menuSong" src="sources/sounds/You Forget A Thousand Things2.mp3"></audio>
         <div class="options d-flex flex-column">
             <button onclick="startGame()" class="button">NOVÁ HRA</button>
             <button onclick="showTutorial()" class="button">TUTORIÁL</button>
+            <button onclick="showMenu()" class="button">SONGA</button>
         </div>
     </div>
 
     <main id="gameWindow" class="game-window">
-        <audio id="audioAccelerate" src="sources/sounds/Car Acceleration Sound.mp3"></audio>
+        <audio id="gameSong" src="sources/sounds/No Happy Endings2.mp3"></audio>
+        <audio id="audioAccelerate" src="sources/sounds/Car Acceleration Sound2.mp3"></audio>
         <audio id="audioDecelerate" src="sources/sounds/deceleration.mp3"></audio>
         <audio id="audioBreaking" src="sources/sounds/breaking.mp3"></audio>
+        <audio id="audioBasic" src="sources/sounds/basic moving car.mp3"></audio>
         <dialog id="loseDialog">
             <p> Game over chlapce </p>
             <button onclick="showMenu()" class="button">MENU</button>

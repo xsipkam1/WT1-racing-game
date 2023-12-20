@@ -6,12 +6,12 @@
             "car1": {
                 "img": "./sources/graphics/car (2).png",
                 "track": 2,
-                "spawn": 5
+                "spawn": 1
             },
             "car2": {
                 "img": "./sources/graphics/car (3).png",
                 "track": 4,
-                "spawn": 14
+                "spawn": 10
             },
             "car3": {
                 "img": "./sources/graphics/bus.png",
@@ -21,17 +21,17 @@
             "car4": {
                 "img": "./sources/graphics/car (4).png",
                 "track": 2,
-                "spawn": 19
+                "spawn": 5
             },
             "car5": {
                 "img": "./sources/graphics/car (5).png",
                 "track": 3,
-                "spawn": 11
+                "spawn": 7
             },
             "car6": {
                 "img": "./sources/graphics/car (2).png",
                 "track": 6,
-                "spawn": 10
+                "spawn": 3
             }
         }
         
