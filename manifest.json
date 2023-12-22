@@ -451,9 +451,11 @@
             "sizes": "1024x1024"
           }
     ],
+    "start_url": "./",
+    "scope": ".",
     "display": "standalone",
     "orientation": "portrait",
     "background_color": "#1b989c",
     "theme_color": "#126d6d",
     "lang": "sk"
-  }
+}

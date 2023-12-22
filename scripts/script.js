@@ -106,7 +106,7 @@ function updateCars() {
         car.update()
         if (player.collision(car.getBoundingBox())) {
             crashSound.play()
-            console.log("KOLIZIA S AUTOM NA TRATI CISLO ", car.track)
+            //console.log("KOLIZIA S AUTOM NA TRATI CISLO ", car.track)
             lose()
         }
     });
@@ -153,13 +153,13 @@ let countdownInterval2
 
 function startCountdown(time) {
     countdownInterval = setInterval(() => {
-        console.log(`Current time on countdown: ${time} seconds`)
+        //console.log(`Current time on countdown: ${time} seconds`)
         updateStats(time)
         if (dodgedCars === carsData.length) {
             win()
         }
         if (time === 0) {
-            console.log('Countdown reached 0 seconds. Time\'s up!')
+            //console.log('Countdown reached 0 seconds. Time\'s up!')
             lose()
         }
         time--
@@ -172,11 +172,10 @@ function startCountdownSpawning() {
     function spawnCars() {
         carsData.forEach((car) => {
             if (time === car.spawn) {
-                console.log(`Alert: Time matches car.spawn value for ${car.img}`);
+                //console.log(`Alert: Time matches car.spawn value for ${car.img}`);
                 cars.push(new Car(car.img, car.track, player.velocity));
             }
         });
-        console.log(speed);
         clearInterval(countdownInterval2);
         speed = 1000;
         if (player.velocity === SLOW_VELOCITY) {
@@ -205,17 +204,21 @@ function startGame() {
     window.requestAnimationFrame(update)
 }
 
+let lastUpdateTimestamp  = window.performance.now()
 function update() {
-    road.update(road2.y)
-    road2.update(road.y)
-    player.update()
-    updateCars()
     if (animationRunning) {
         window.requestAnimationFrame(update)
     }
+    const currentTimestamp = window.performance.now()
+    const elapsedSinceLastUpdate = currentTimestamp - lastUpdateTimestamp 
+    if (elapsedSinceLastUpdate >= (16.6)) {
+        lastUpdateTimestamp  = currentTimestamp - (elapsedSinceLastUpdate % (16.6))
+        road.update(road2.y);
+        road2.update(road.y);
+        player.update();
+        updateCars();
+    }
 }
-
-
 
 document.addEventListener('keydown', handleKeyPress);
 document.addEventListener('keyup', handleKeyUp);
@@ -291,7 +294,6 @@ function startPlayingSound(audio) {
         if (volumee <= volumeControl.value) {
             volumee += 0.01;
             audio.volume = volumee;
-            console.log(audio.volume)
         } 
             else {
             audio.play()
@@ -304,8 +306,6 @@ function playAudioOnce(audio, audioPlayed) {
     if (!audioPlayed.value) {
         audio.play();
         audioPlayed.value = true;
-        console.log(audioPlayed.value);
-        console.log(audio3Played);
     }
 }
 
@@ -327,6 +327,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+
 navigator.serviceWorker.register("./serviceWorker.js")
 .then((reg) => {
     console.log("service worker registered", reg)
@@ -334,3 +335,5 @@ navigator.serviceWorker.register("./serviceWorker.js")
 .catch((err) => {
     console.log("error when registering service worker", err)
 })
+
+

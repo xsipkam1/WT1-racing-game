@@ -1,7 +1,6 @@
 const cache_container = "static_v1";
 const files = [
     "./",
-    "./manifest.json",
     "./data/levels.json",
     "./node_modules/bootstrap/dist/css/bootstrap.min.css",
     "./node_modules/bootstrap/dist/js/bootstrap.min.js",
@@ -24,7 +23,6 @@ const files = [
     "./sources/sounds/basic moving car.mp3",
     "./sources/sounds/win2.mp3",
     "./sources/sounds/car crash3.mp3",
-    "./sources/icons/*",
     "./css/style.css",
     "./scripts/Car.js",
     "./scripts/Player.js",
@@ -41,12 +39,6 @@ self.addEventListener('install', function(event){
         })
     )
 })
-
-/*
-self.addEventListener("activate", function(event) {
-    console.log("activated", event)
-})
-*/
 
 self.addEventListener('fetch', function(event){
     event.respondWith(

@@ -1,6 +1,6 @@
-const INITIAL_SPEED = 7
-const LOWEST_SPEED = 4
-const HIGHEST_SPEED = 10
+const INITIAL_SPEED = 14
+const LOWEST_SPEED = 8
+const HIGHEST_SPEED = 20
 
 class Road {
     constructor(y) {

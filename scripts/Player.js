@@ -1,6 +1,6 @@
-const INITIAL_VELOCITY = 0.25
-const SLOW_VELOCITY = 0.1
-const FAST_VELOCITY = 0.35
+const INITIAL_VELOCITY = 0.5
+const SLOW_VELOCITY = 0.2
+const FAST_VELOCITY = 0.75
 
 class Player {
     constructor() {
