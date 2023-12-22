@@ -2,14 +2,16 @@
     box-sizing: border-box;
 }
 
+/*
 @font-face {
-    font-family: poppins;
+    font-family: 'Poppins', poppins;
     src:url(../sources/fonts/poppins.ttf); 
 }
+*/
 
 body {
     background-color: rgb(130, 197, 86);
-    font-family: poppins, sans-serif;
+    font-family: 'Poppins', sans-serif;
     overflow: hidden;
 }
 
