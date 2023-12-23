@@ -25,9 +25,15 @@ function updateStats(time) {
     carsLeftElement.textContent = `CARS LEFT: ${dodgedCars}/${carsData.length}`
 }
 
+var levelLabel = document.getElementById('levelCounter');
 function win() {
+    console.log(randomLevelKey)
+    completedLevels.push(randomLevelKey);
+    console.log(completedLevels)
+    saveCompletedLevels(completedLevels);
     showDialog("winDialog")
     winSound.play()
+    levelLabel.textContent = completedLevels.length + '/5 level';
     gameEnded()
 }
 
@@ -82,6 +88,13 @@ function showTutorial(){
 }
 
 function showMenu() {
+    completedLevels = loadCompletedLevels()
+    if (completedLevels.length != 0) {
+        console.log("display block")
+        continueButton.style.display = 'block';
+    } else {
+        continueButton.style.display = 'none';
+    }
     document.getElementById("menuBackground").classList.remove("darkened")
     menuTheme.volume=volumeControl.value
     menuTheme.play()
@@ -112,18 +125,32 @@ function updateCars() {
     });
 }
 
+let randomLevelKey
+let levels;
+
 async function getJson() {
-    const response = await fetch("./data/levels.json")
-    if(response.ok) {
-        const levels = await response.json()
-        if (levels) {
-            const levelKeys = Object.keys(levels)
-            const randomLevelKey = levelKeys[Math.floor(Math.random() * levelKeys.length)]
-            const randomLevelData = levels[randomLevelKey]
-            return randomLevelData
+    const response = await fetch("./data/levels.json");
+    if (response.ok) {
+      levels = await response.json();
+      if (levels) {
+        const levelKeys = Object.keys(levels);
+        let availableLevels = levelKeys.filter(key => !completedLevels.includes(key));
+
+        if (availableLevels.length === 0) {
+            console.log("Vymazavam completed levels")
+          completedLevels.length = 0;
         }
+        console.log(completedLevels)
+        availableLevels = levelKeys.filter(key => !completedLevels.includes(key));
+        console.log("Available levels:")
+        console.log(availableLevels)
+        randomLevelKey = availableLevels[Math.floor(Math.random() * availableLevels.length)];
+        const randomLevelData = levels[randomLevelKey];
+  
+        return randomLevelData;
+      }
     }
-}
+  }
 
 function loadLevelData() {
     getJson().then((levelData) => {
@@ -153,7 +180,6 @@ let countdownInterval2
 
 function startCountdown(time) {
     countdownInterval = setInterval(() => {
-        console.log(`Current time on countdown: ${time} seconds`)
         updateStats(time)
         if (dodgedCars === carsData.length) {
             win()
@@ -172,11 +198,10 @@ function startCountdownSpawning() {
     function spawnCars() {
         carsData.forEach((car) => {
             if (time === car.spawn) {
-                console.log(`Alert: Time matches car.spawn value for ${car.img}`);
+                //console.log(`Alert: Time matches car.spawn value for ${car.img}`);
                 cars.push(new Car(car.img, car.track, player.velocity));
             }
         });
-        console.log(speed);
         clearInterval(countdownInterval2);
         speed = 1000;
         if (player.velocity === SLOW_VELOCITY) {
@@ -192,7 +217,23 @@ function startCountdownSpawning() {
     }, speed);
 }
 
+let completedLevels = loadCompletedLevels()
+var continueButton = document.getElementById('continueButton');
+
+if (completedLevels.length == 0) {
+    continueButton.style.display = 'none';
+}
+
+function newGame() {
+    completedLevels = loadCompletedLevels()
+    completedLevels.length = 0;
+    saveCompletedLevels(completedLevels)
+    console.log(completedLevels.length)
+    startGame()
+}
+
 function startGame() {
+    completedLevels = loadCompletedLevels()
     stopPlayingSound(menuTheme)
     clearPreviousGame()
     loadLevelData()
@@ -205,6 +246,15 @@ function startGame() {
     window.requestAnimationFrame(update)
 }
 
+function saveCompletedLevels(completedLevels) {
+    localStorage.setItem('completedLevels', JSON.stringify(completedLevels));
+  }
+  
+function loadCompletedLevels() {
+    const storedCompletedLevels = localStorage.getItem('completedLevels');
+    return storedCompletedLevels ? JSON.parse(storedCompletedLevels) : [];
+  }
+
 function update() {
     road.update(road2.y)
     road2.update(road.y)
@@ -214,7 +264,6 @@ function update() {
         window.requestAnimationFrame(update)
     }
 }
-
 
 
 document.addEventListener('keydown', handleKeyPress);
@@ -288,11 +337,10 @@ function startPlayingSound(audio) {
     let volumee = 0.0;
 
     const fadeInInterval = setInterval(() => {
-        if (volumee <= volumeControl.value) {
+        if (volumee < volumeControl.value) {
             volumee += 0.01;
             audio.volume = volumee;
-            console.log(audio.volume)
-        } 
+        }
             else {
             audio.play()
             clearInterval(fadeInInterval);
@@ -304,8 +352,6 @@ function playAudioOnce(audio, audioPlayed) {
     if (!audioPlayed.value) {
         audio.play();
         audioPlayed.value = true;
-        console.log(audioPlayed.value);
-        console.log(audio3Played);
     }
 }
 

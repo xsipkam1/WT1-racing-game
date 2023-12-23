@@ -1,55 +1,441 @@
 {
     "level1": [
       {
-        "time": 18,
-        "cars": {
-            "car1": {
-                "img": "./sources/graphics/car (2).png",
-                "track": 1,
+          "time": 39,
+          "cars": {
+            "car3": {
+                "img": "./sources/graphics/car (4).png",
+                "track": 6,
                 "spawn": 1
             },
-            "car2": {
-                "img": "./sources/graphics/car (3).png",
-                "track": 4,
-                "spawn": 2
+            "car12": {
+                "img": "./sources/graphics/car (5).png",
+                "track": 2,
+                "spawn": 3
             },
-            "car4": {
+            "car14": {
+                "img": "./sources/graphics/car (4).png",
+                "track": 5,
+                "spawn": 6
+            },
+            "car24": {
                 "img": "./sources/graphics/car (4).png",
                 "track": 6,
                 "spawn": 5
             },
-            "car5": {
-                "img": "./sources/graphics/car (5).png",
-                "track": 2,
-                "spawn": 6
-            },
-            "car6": {
-                "img": "./sources/graphics/car (2).png",
-                "track": 3,
+            "car2": {
+                "img": "./sources/graphics/car (3).png",
+                "track": 1,
                 "spawn": 7
             },
-            "car8": {
-                "img": "./sources/graphics/car (4).png",
-                "track": 5,
-                "spawn": 10
+            "car15": {
+                "img": "./sources/graphics/car (5).png",
+                "track": 6,
+                "spawn": 8
             },
-            "car9": {
-                "img": "./sources/graphics/bus.png",
+            "car4": {
+                "img": "./sources/graphics/car (4).png",
                 "track": 1,
-                "spawn": 11
+                "spawn": 9
             },
             "car10": {
-                "img": "./sources/graphics/car (2).png",
-                "track": 4,
+                "img": "./sources/graphics/bus.png",
+                "track": 2,
+                "spawn": 10
+            },
+            "car22": {
+                "img": "./sources/graphics/car (5).png",
+                "track": 5,
+                "spawn": 11
+            },
+            "car13": {
+                "img": "./sources/graphics/car (4).png",
+                "track": 5,
                 "spawn": 14
             },
-            "car12": {
+            "car7": {
                 "img": "./sources/graphics/car (3).png",
-                "track": 2,
-                "spawn": 15
+                "track": 3,
+                "spawn": 17
+            },
+            "car1": {
+                "img": "./sources/graphics/car (5).png",
+                "track": 5,
+                "spawn": 20
+            },
+            "car6": {
+                "img": "./sources/graphics/car (5).png",
+                "track": 4,
+                "spawn": 19
+            },
+            "car9": {
+                "img": "./sources/graphics/car (3).png",
+                "track": 5,
+                "spawn": 23
+            },
+            "car25": {
+                "img": "./sources/graphics/car (3).png",
+                "track": 1,
+                "spawn": 22
+            },
+            "car17": {
+                "img": "./sources/graphics/car (5).png",
+                "track": 5,
+                "spawn": 28
+            },
+            "car11": {
+                "img": "./sources/graphics/bus.png",
+                "track": 4,
+                "spawn": 39
+            },
+            "car23": {
+                "img": "./sources/graphics/bus.png",
+                "track": 4,
+                "spawn": 33
+            },
+            "car5": {
+                "img": "./sources/graphics/car (3).png",
+                "track": 5,
+                "spawn": 35
+            },
+            "car20": {
+                "img": "./sources/graphics/car (4).png",
+                "track": 3,
+                "spawn": 30
+            },
+            "car16": {
+                "img": "./sources/graphics/bus.png",
+                "track": 4,
+                "spawn": 34
+            },
+            "car21": {
+                "img": "./sources/graphics/bus.png",
+                "track": 1,
+                "spawn": 16
+            },
+            "car18": {
+                "img": "./sources/graphics/car (4).png",
+                "track": 6,
+                "spawn": 38
+            },
+            "car8": {
+                "img": "./sources/graphics/car (3).png",
+                "track": 1,
+                "spawn": 37
+            },
+            "car19": {
+                "img": "./sources/graphics/car (5).png",
+                "track": 6,
+                "spawn": 12
             }
         }
         
       }
-    ]
+  ],
+  "level2": [
+    {
+      "time": 30,
+      "cars": {
+        "car1": {
+          "img": "./sources/graphics/car (5).png",
+          "track": 1,
+          "spawn": 3
+        },
+        "car2": {
+          "img": "./sources/graphics/car (2).png",
+          "track": 4,
+          "spawn": 5
+        },
+        "car3": {
+          "img": "./sources/graphics/car (3).png",
+          "track": 2,
+          "spawn": 8
+        },
+        "car4": {
+          "img": "./sources/graphics/car (4).png",
+          "track": 6,
+          "spawn": 11
+        },
+        "car5": {
+          "img": "./sources/graphics/car (5).png",
+          "track": 3,
+          "spawn": 14
+        },
+        "car6": {
+          "img": "./sources/graphics/car (2).png",
+          "track": 5,
+          "spawn": 15
+        },
+        "car7": {
+          "img": "./sources/graphics/car (3).png",
+          "track": 1,
+          "spawn": 17
+        },
+        "car8": {
+          "img": "./sources/graphics/car (4).png",
+          "track": 6,
+          "spawn": 19
+        }, 
+        "car9": {
+          "img": "./sources/graphics/car (2).png",
+          "track": 4,
+          "spawn": 20
+        },
+        "car10": {
+          "img": "./sources/graphics/car (4).png",
+          "track": 3,
+          "spawn": 21
+        }, "car11": {
+          "img": "./sources/graphics/bus.png",
+          "track": 2,
+          "spawn": 22
+        }
+      }
+    }
+  ],
+  "level3": [
+    {
+      "time": 25,
+      "cars": {
+        "car1": {
+          "img": "./sources/graphics/car (2).png",
+          "track": 1,
+          "spawn": 2
+        },
+        "car2": {
+          "img": "./sources/graphics/car (3).png",
+          "track": 4,
+          "spawn": 4
+        },
+        "car3": {
+          "img": "./sources/graphics/car (4).png",
+          "track": 2,
+          "spawn": 6
+        },
+        "car11": {
+          "img": "./sources/graphics/car (2).png",
+          "track": 5,
+          "spawn": 8
+        },
+        "car4": {
+          "img": "./sources/graphics/car (5).png",
+          "track": 6,
+          "spawn": 9
+        },
+        "car5": {
+          "img": "./sources/graphics/car (2).png",
+          "track": 3,
+          "spawn": 11
+        },
+        "car6": {
+          "img": "./sources/graphics/car (4).png",
+          "track": 5,
+          "spawn": 14
+        },
+        "car7": {
+          "img": "./sources/graphics/car (3).png",
+          "track": 1,
+          "spawn": 17
+        },
+        "car8": {
+          "img": "./sources/graphics/car (5).png",
+          "track": 4,
+          "spawn": 20
+        },
+        "car9": {
+          "img": "./sources/graphics/bus.png",
+          "track": 2,
+          "spawn": 22
+        },
+        "car10": {
+          "img": "./sources/graphics/car (3).png",
+          "track": 5,
+          "spawn": 24
+        }
+      }
+    }
+  ],
+  "level4": [
+    {
+      "time": 35,
+      "cars": {
+        "car1": {
+          "img": "./sources/graphics/car (2).png",
+          "track": 1,
+          "spawn": 2
+        },
+        "car2": {
+          "img": "./sources/graphics/car (3).png",
+          "track": 4,
+          "spawn": 5
+        },
+        "car11": {
+          "img": "./sources/graphics/bus.png",
+          "track": 3,
+          "spawn": 6
+        },
+        "car3": {
+          "img": "./sources/graphics/car (4).png",
+          "track": 2,
+          "spawn": 8
+        },
+        "car4": {
+          "img": "./sources/graphics/car (5).png",
+          "track": 6,
+          "spawn": 10
+        },
+        "car5": {
+          "img": "./sources/graphics/car (2).png",
+          "track": 3,
+          "spawn": 13
+        },
+        "car6": {
+          "img": "./sources/graphics/car (4).png",
+          "track": 5,
+          "spawn": 16
+        },
+        "car11": {
+          "img": "./sources/graphics/car (5).png",
+          "track": 2,
+          "spawn": 18
+        },
+        "car7": {
+          "img": "./sources/graphics/car (3).png",
+          "track": 1,
+          "spawn": 19
+        },
+        "car8": {
+          "img": "./sources/graphics/car (5).png",
+          "track": 6,
+          "spawn": 22
+        },
+        "car9": {
+          "img": "./sources/graphics/bus.png",
+          "track": 2,
+          "spawn": 24
+        },
+        "car10": {
+          "img": "./sources/graphics/car (2).png",
+          "track": 4,
+          "spawn": 26
+        }
+      }
+    }
+  ],
+
+  "level5": [
+    {
+      "time": 35,
+      "cars": [
+        {
+          "img": "./sources/graphics/car (2).png",
+          "track": 1,
+          "spawn": 1
+        },
+        {
+          "img": "./sources/graphics/car (3).png",
+          "track": 4,
+          "spawn": 3
+        },
+        {
+          "img": "./sources/graphics/car (4).png",
+          "track": 2,
+          "spawn": 4
+        },
+        {
+          "img": "./sources/graphics/car (5).png",
+          "track": 6,
+          "spawn": 6
+        },
+        {
+          "img": "./sources/graphics/car (2).png",
+          "track": 2,
+          "spawn": 8
+        },
+        {
+          "img": "./sources/graphics/car (4).png",
+          "track": 1,
+          "spawn": 10
+        },
+        {
+          "img": "./sources/graphics/car (3).png",
+          "track": 5,
+          "spawn": 12
+        },
+        {
+          "img": "./sources/graphics/bus.png",
+          "track": 4,
+          "spawn": 18
+        },
+        {
+          "img": "./sources/graphics/car (5).png",
+          "track": 2,
+          "spawn": 14
+        },
+        {
+          "img": "./sources/graphics/car (2).png",
+          "track": 6,
+          "spawn": 16
+        },
+        {
+          "img": "./sources/graphics/car (4).png",
+          "track": 3,
+          "spawn": 19
+        },
+        {
+          "img": "./sources/graphics/car (3).png",
+          "track": 1,
+          "spawn": 21
+        },
+        {
+          "img": "./sources/graphics/car (5).png",
+          "track": 4,
+          "spawn": 23
+        },
+        {
+          "img": "./sources/graphics/car (2).png",
+          "track": 6,
+          "spawn": 25
+        },
+        {
+          "img": "./sources/graphics/car (4).png",
+          "track": 2,
+          "spawn": 27
+        },
+        {
+          "img": "./sources/graphics/car (3).png",
+          "track": 5,
+          "spawn": 29
+        },
+        {
+          "img": "./sources/graphics/car (5).png",
+          "track": 1,
+          "spawn": 31
+        },
+        {
+          "img": "./sources/graphics/car (2).png",
+          "track": 4,
+          "spawn": 33
+        },
+        {
+          "img": "./sources/graphics/car (4).png",
+          "track": 6,
+          "spawn": 35
+        },
+        {
+          "img": "./sources/graphics/car (3).png",
+          "track": 2,
+          "spawn": 37
+        },
+        {
+          "img": "./sources/graphics/car (5).png",
+          "track": 5,
+          "spawn": 39
+        }
+      ]
+    }
+  ]
+
+
+
 }

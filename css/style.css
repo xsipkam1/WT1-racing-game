@@ -184,7 +184,11 @@ body {
 }
 
 .form-label {
-    font-size: 25px;  
+    font-size: 25px;
+}
+#levelCounter {
+    color: rgb(2, 2, 38);
+    font-size: 2rem;
 }
 
 @media (max-width: 540px) { 
