@@ -94,3 +94,17 @@ class Player {
 }
 
 const player = new Player();
+
+let sensor = new Gyroscope({ frequency: 50 });
+
+sensor.onreading = () => {
+    const roadBounds = road.getBoundingBox();
+    const playerBounds = player.getBoundingBox();
+    if (playerBounds.left < roadBounds.left) {
+        player.car.style.setProperty("--x", roadBounds.left+5);
+    } else if (playerBounds.right > roadBounds.right-5) {
+        player.car.style.setProperty("--x", roadBounds.left+90);
+    } else {
+        player.car.style.setProperty("--x", (player.car.offsetLeft+(sensor.y * 50)) / window.screen.width*100);
+    }
+};

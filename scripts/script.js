@@ -37,6 +37,7 @@ function lose() {
 }
 
 function gameEnded() {
+    sensor.stop()
     clearInterval(countdownInterval)
     clearInterval(countdownInterval2)
     animationRunning = false
@@ -201,14 +202,12 @@ function startGame() {
     showElement("gameWindow")
     audio.play()
     startPlayingSound(gameSong)
+    sensor.start()
     window.requestAnimationFrame(update)
 }
 
 let lastUpdateTimestamp  = window.performance.now()
 function update() {
-    if (animationRunning) {
-        window.requestAnimationFrame(update)
-    }
     const currentTimestamp = window.performance.now()
     const elapsedSinceLastUpdate = currentTimestamp - lastUpdateTimestamp 
     if (elapsedSinceLastUpdate >= (16.6)) {
@@ -217,6 +216,9 @@ function update() {
         road2.update(road.y);
         player.update();
         updateCars();
+    }
+    if (animationRunning) {
+        window.requestAnimationFrame(update)
     }
 }
 
