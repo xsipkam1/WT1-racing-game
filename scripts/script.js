@@ -32,6 +32,9 @@ function win() {
     if (completedLevels.length === numberOfLevels) {
         completedLevels.length = 0
         continueButton.style.display = 'none'
+        document.getElementById('winDialogContinueButton').style.display = 'none'
+    } else {
+        document.getElementById('winDialogContinueButton').style.display = 'block'
     }
     saveCompletedLevels(completedLevels)
     showDialog("winDialog")
@@ -238,6 +241,8 @@ function startGame() {
     startCountdownSpawning()
     hideElement("menu")
     hideElement("menuBackground")
+    hideDialog("loseDialog")
+    hideDialog("winDialog")
     showElement("gameWindow")
     audio.play()
     startPlayingSound(gameSong)

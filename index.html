@@ -34,11 +34,13 @@
         <audio id="audioCrash" src="sources/sounds/crash.mp3"></audio>
         <dialog id="loseDialog" class="dialog text-center">
             <h2>GAME OVER</h2>
+            <button onclick="startGame()" class="button" id="loseDialogContinueButton" >OPAKOVAŤ</button>
             <button onclick="showMenu()" class="button">MENU</button>
         </dialog>
         <dialog id="winDialog" class="dialog text-center">
             <h2>WIN</h2>
             <label id="levelCounter">X/Y level</label>
+            <button onclick="startGame()" class="button" id="winDialogContinueButton" >POKRAČOVAŤ</button>
             <button onclick="showMenu()" class="button">MENU</button>
         </dialog>
         <div class="stats">
