@@ -45,10 +45,10 @@ class Player {
     collision(car) {
         const playerCarBounds = this.getBoundingBox()
         return (
-            playerCarBounds.left < car.right &&
-            playerCarBounds.right > car.left &&
-            playerCarBounds.top < car.bottom &&
-            playerCarBounds.bottom > car.top
+            playerCarBounds.left < car.right - 7 &&
+            playerCarBounds.right > car.left + 7 &&
+            playerCarBounds.top < car.bottom - 10 &&
+            playerCarBounds.bottom > car.top + 5
         );
     }
 

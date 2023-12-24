@@ -17,26 +17,28 @@
 
     <div id="menu" class="menu">
         <div class="options d-flex flex-column">
-            <button onclick="startGame()" class="button">NOVÁ HRA</button>
+            <button onclick="startGame()" class="button" id="continueButton" >POKRAČOVAŤ</button>
+            <button onclick="newGame()" class="button">NOVÁ HRA</button>
             <button onclick="showTutorial()" class="button">TUTORIÁL</button>
             <button onclick="showSettings()" class="button">NASTAVENIA</button>
         </div>
     </div>
 
     <main id="gameWindow" class="game-window">
-        <audio id="gameSong" src="sources/sounds/No Happy Endings2.mp3"></audio>
-        <audio id="audioAccelerate" src="sources/sounds/Car Acceleration Sound2.mp3"></audio>
+        <audio id="gameSong" src="sources/sounds/game-theme.mp3"></audio>
+        <audio id="audioAccelerate" src="sources/sounds/acceleration.mp3"></audio>
         <audio id="audioDecelerate" src="sources/sounds/deceleration.mp3"></audio>
         <audio id="audioBreaking" src="sources/sounds/breaking.mp3"></audio>
-        <audio id="audioBasic" src="sources/sounds/basic moving car.mp3"></audio>
+        <audio id="audioBasic" src="sources/sounds/car-basic.mp3"></audio>
         <audio id="audioWin" src="sources/sounds/win2.mp3"></audio>
-        <audio id="audioCrash" src="sources/sounds/car crash3.mp3"></audio>
+        <audio id="audioCrash" src="sources/sounds/crash.mp3"></audio>
         <dialog id="loseDialog" class="dialog text-center">
             <h2>GAME OVER</h2>
             <button onclick="showMenu()" class="button">MENU</button>
         </dialog>
         <dialog id="winDialog" class="dialog text-center">
             <h2>WIN</h2>
+            <label id="levelCounter">X/Y level</label>
             <button onclick="showMenu()" class="button">MENU</button>
         </dialog>
         <div class="stats">
