@@ -1,7 +1,5 @@
 # ZADANIE
 
-Hru si môžete vyskúšať: https://webte1.fei.stuba.sk/~xsipkam1/thesecoloursdontrunblegh/ 
-
 Úlohou je naprogramovať hru vo forme PWA, v rámci ktorej sa bude dať pohybovať na obrazovke pomocou nakláňania mobilu, myši alebo stláčaním tlačidiel na klávesnici (šípky alebo tlačidlá W, A, S, D). Hru bude možné hrať na desktope aj na mobile. V prípade použitia mobilu využite zabudovaný gyroskop. Pri desktopovej verzii sa bude používať myš a klávesnica. Pri hraní hry využívajte iba vertikálny a horizontálny pohyb, t.j. nevyužívajte klikanie myšou.
 
 ## Požiadavky
